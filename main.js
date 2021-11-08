@@ -20,6 +20,16 @@ function onInit(){
     })
 }
 
+function onSubmitLoginHandler(e){
+    e.preventDefault()
+    let formData = new FormData(document.forms['login-form'])
+
+    let email = formData.get('email')
+    let password=formData.get('password')
+
+    authService.login(email,password)
+}
+
 
 
 
