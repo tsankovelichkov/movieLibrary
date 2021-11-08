@@ -17,10 +17,21 @@ let authService = {
     },
     
     getData() {
-        let data = JSON.parse(localStorage.getItem('user'))
-        return {
-            isAuthenticated: Boolean(data.idToken),
-            email:data.email
+        try {
+            let data = JSON.parse(localStorage.getItem('user'))
+            return {
+                isAuthenticated: Boolean(data.idToken),
+                email:data.email
+            } 
+        } catch (error) {
+            return {
+                isAuthenticated: false,
+                email: ''
+            } 
         }
+    },
+
+    logout() {
+        localStorage.setItem("user","")
     }
 }
