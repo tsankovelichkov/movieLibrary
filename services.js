@@ -61,5 +61,13 @@ const movieService = {
             body: JSON.stringify(data)
         }).then(res=>res.json())
           .then(data=>navigate('/home'))
+    },
+
+    async getAll(){
+       let response = await fetch('https://movielibrary-62811-default-rtdb.firebaseio.com/movies.json')
+       
+       let data = await response.json()
+
+       return data
     }
 }

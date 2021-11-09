@@ -5,9 +5,15 @@ const routes = {
     "/add-movie":"add-movie-template"
 }
 
-function router(path) {
+const router = async (path) => {
+
+    let userData= authService.getData()
+
 
     switch (path) {
+        case '/home':
+            userData.movies = await movieService.getAll()
+            break
         case '/logout':
             authService.logout()
             return navigate('/home')
@@ -17,8 +23,6 @@ function router(path) {
 
     let app = document.getElementById('app')
 
-    let userData= authService.getData()
- 
     let template=Handlebars.compile(document.getElementById(routes[path]).innerHTML)
     app.innerHTML = template(userData)
 }

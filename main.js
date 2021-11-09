@@ -60,7 +60,6 @@ function onSubmitAddMovieHandler(e){
     }
 
     movieService.add(movieData)
-
 }
 
 onInit()
