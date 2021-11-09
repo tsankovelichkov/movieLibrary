@@ -1,7 +1,8 @@
 const routes = {
     "/home":"home-guest-template",
     "/login":"login-template",
-    "/register":"register-template"
+    "/register":"register-template",
+    "/add-movie":"add-movie-template"
 }
 
 function router(path) {

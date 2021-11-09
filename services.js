@@ -1,4 +1,5 @@
 const apiKey = "AIzaSyCuHFequepv_zS4bOTnE0_JGgng4X4xBgA" 
+const dataBaseUrl='https://movielibrary-62811-default-rtdb.firebaseio.com/'
 
 const authService = {
     login(email,password) {
@@ -50,3 +51,15 @@ const authService = {
     }
 }
 
+const movieService = {
+    add(data){
+        fetch('https://movielibrary-62811-default-rtdb.firebaseio.com/movies.json', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res=>res.json())
+          .then(data=>navigate('/home'))
+    }
+}

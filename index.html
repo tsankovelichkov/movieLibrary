@@ -53,7 +53,7 @@
     {{#if isAuthenticated}}
     <h1 class="text-center">Movies</h1>
         <section>
-            <a href="#" class="btn btn-warning ">Add Movie</a>
+            <a onclick="addMovieHandler(event)" href="/add-movie" class="btn btn-warning ">Add Movie</a>
             <form class="search float-right">
                 <label>Search: </label>
                 <input type="text">
@@ -137,6 +137,25 @@
         </div>
     
         <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</script> 
+<script type="text/x-handlebars-template" id="add-movie-template">
+    {{>navigation-template}}
+    <form name="add-movie-form" class="text-center border border-light p-5" action="#" method="" onsubmit="onSubmitAddMovieHandler(event)">
+        <h1>Add Movie</h1>
+        <div class="form-group">
+            <label for="title">Movie Title</label>
+            <input type="text" class="form-control" placeholder="Title" name="title" value="">
+        </div>
+        <div class="form-group">
+            <label for="description">Movie Description</label>
+            <textarea class="form-control" placeholder="Description" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="imageUrl">Image url</label>
+            <input type="text" class="form-control" placeholder="Image Url" name="imageUrl" value="">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </script> 
 </html>

@@ -13,6 +13,14 @@ function navigateHandler(e){
      }
 }
 
+function addMovieHandler(e){
+    e.preventDefault()
+    if(e.target.classList.contains('btn-warning')){
+            let url = new URL(e.target.href)
+            navigate(url.pathname)
+     }
+}
+
 function onSubmitLoginHandler(e){
     e.preventDefault()
     let formData = new FormData(document.forms['login-form'])
@@ -34,6 +42,24 @@ function onSubmitRegisterHandler(e){
     if(password == repeatPassword){
         authService.register(email,password)
     }
+
+}
+
+function onSubmitAddMovieHandler(e){
+    e.preventDefault()
+    let formData = new FormData(document.forms['add-movie-form'])
+
+    let title = formData.get('title')
+    let description=formData.get('description')
+    let imageUrl = formData.get("imageUrl")
+
+    let movieData ={
+        title,
+        description,
+        imageUrl
+    }
+
+    movieService.add(movieData)
 
 }
 
