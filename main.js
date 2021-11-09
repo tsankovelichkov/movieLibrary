@@ -23,4 +23,18 @@ function onSubmitLoginHandler(e){
     authService.login(email,password)
 }
 
+function onSubmitRegisterHandler(e){
+    e.preventDefault()
+    let formData = new FormData(document.forms['register-form'])
+
+    let email = formData.get('email')
+    let password=formData.get('password')
+    let repeatPassword = formData.get("repeatPassword")
+
+    if(password == repeatPassword){
+        authService.register(email,password)
+    }
+
+}
+
 onInit()

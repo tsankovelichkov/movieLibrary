@@ -1,6 +1,6 @@
-const apiKey = "AIzaSyCuHFequepv_zS4bOTnE0_JGgng4X4xBgA"
+const apiKey = "AIzaSyCuHFequepv_zS4bOTnE0_JGgng4X4xBgA" 
 
-let authService = {
+const authService = {
     login(email,password) {
         fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
             method: "POST",
@@ -33,5 +33,20 @@ let authService = {
 
     logout() {
         localStorage.setItem("user","")
+    },
+
+    register(email,password){
+        fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        }).then(res=>res.json())
+          .then(data=>navigate('/login'))
     }
 }
+
