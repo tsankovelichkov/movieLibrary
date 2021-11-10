@@ -68,6 +68,16 @@ const movieService = {
        
        let data = await response.json()
 
+       return Object.keys(data).map( key => ({key,...data[key]}))
+    },
+
+    async getOne(id) {
+        let response = await fetch(`https://movielibrary-62811-default-rtdb.firebaseio.com/movies/${id}.json`)
+       
+       let data = await response.json()
+
        return data
     }
+
+
 }

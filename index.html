@@ -22,21 +22,21 @@
 
 <script type="text/x-handlebars-template" id="navigation-template">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark navi" onclick=navigateHandler(event)>
-        <a class="navbar-brand text-light nav-link" href="/home">Movies</a>
+        <a class="navbar-brand text-light nav-link navi" href="/home">Movies</a>
         <ul class="navbar-nav ml-auto "> 
             {{#if isAuthenticated}}
             <li class="nav-item">
-                <a class="nav-link" href="/home">Welcome, {{email}}</a>
+                <a class="nav-link navi" href="/home">Welcome, {{email}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link navi" href="/logout">Logout</a>
             </li> 
             {{else}}
             <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link navi" href="/login">Login</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
+                <a class="nav-link navi" href="/register">Register</a>
             </li> 
             {{/if}}
         </ul>
@@ -53,7 +53,7 @@
     {{#if isAuthenticated}}
     <h1 class="text-center">Movies</h1>
         <section>
-            <a onclick="addMovieHandler(event)" href="/add-movie" class="btn btn-warning ">Add Movie</a>
+            <a onclick=navigateHandler(event) href="/add-movie" class="btn btn-warning navi">Add Movie</a>
             <form class="search float-right">
                 <label>Search: </label>
                 <input type="text">
@@ -72,7 +72,7 @@
                             <h4 class="card-title">{{title}}</h4>
                         </div>
                         <div class="card-footer">
-                            <a href="#/details/6lOxMFSMkML09wux6sAF"><button type="button" class="btn btn-info">Details</button></a>
+                            <a class="btn btn-info navi" onclick=navigateHandler(event) href="/details/{{key}}">Details</a>
                         </div>
                     </div>
                     {{/each}}             
@@ -134,5 +134,25 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</script> 
+<script type="text/x-handlebars-template" id="details-page-template">
+    {{>navigation-template}}
+    <div class="container">
+        <div class="row bg-light text-dark">
+        <h1>Movie title: {{title}}</h1>
+            
+            <div class="col-md-8">
+                <img class="img-thumbnail" src="{{imageUrl}}" alt="Movie">
+            </div>
+            <div class="col-md-4 text-center">
+                <h3 class="my-3 ">Movie Description</h3>
+                <p>{{description}}</p>
+                <a class="btn btn-danger" href="#">Delete</a>
+                <a class="btn btn-warning" href="#">Edit</a>
+                <a class="btn btn-primary" href="#">Like</a>
+                <span class="enrolled-span">Liked 1</span>
+            </div>
+        </div>
+    </div>
 </script> 
 </html>
