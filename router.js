@@ -7,6 +7,7 @@ const routes = {
     "/edit": "edit-page-template"
 }
 
+
 const router = async (path) => {
 
     let userData = authService.getData()

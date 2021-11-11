@@ -78,7 +78,7 @@ function onSubmitEditMovieHandler(e,key) {
 }
 
 function movieDeleteHandler(e,key) {
-    e.preventDefault()
+    e.preventDefault() 
     movieService.delete(key)
 }
 
