@@ -77,6 +77,24 @@ const movieService = {
        let data = await response.json()
 
        return data
+    },
+
+    async edit(id,movieEdit) {
+        fetch(`https://movielibrary-62811-default-rtdb.firebaseio.com/movies/${id}.json`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(movieEdit)
+        }).then(res=>res.json())
+          .then(data=>navigate('/home'))
+    },
+
+    async delete(id) {
+        fetch(`https://movielibrary-62811-default-rtdb.firebaseio.com/movies/${id}.json`, {
+            method: "DELETE"
+        }).then(res=>res.json())
+          .then(data=>navigate('/home'))
     }
 
 

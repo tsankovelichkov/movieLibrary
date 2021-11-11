@@ -3,14 +3,15 @@ const routes = {
     "/login": "login-template",
     "/register": "register-template",
     "/add-movie": "add-movie-template",
-    "/details": 'details-page-template'
+    "/details": 'details-page-template',
+    "/edit": "edit-page-template"
 }
 
 const router = async (path) => {
 
     let userData = authService.getData()
 
-    let [ empty ,mainPath, key] = path.split('/')
+    let [empty, mainPath, key] = path.split('/')
 
     switch (path) {
         case '/home':
@@ -23,8 +24,13 @@ const router = async (path) => {
             let detialsPageData = await movieService.getOne(key)
             let app = document.getElementById('app')
             let template = Handlebars.compile(document.getElementById(routes['/details']).innerHTML)
-            app.innerHTML = template(detialsPageData)
+            app.innerHTML = template(Object.assign(detialsPageData, { key }))
             return
+        case `/edit/${key}`:
+            let app1 = document.getElementById('app')
+            let template1 = Handlebars.compile(document.getElementById(routes['/edit']).innerHTML)
+            app1.innerHTML = template1({key})
+            return    
         default:
             break;
     }

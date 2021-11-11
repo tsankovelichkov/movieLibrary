@@ -58,4 +58,28 @@ function onSubmitAddMovieHandler(e) {
     movieService.add(movieData)
 }
 
+function onSubmitEditMovieHandler(e,key) {
+    e.preventDefault()
+    let formData = new FormData(document.forms['edit-form'])
+    
+    let title = formData.get('title')
+    let description = formData.get('description')
+    let imageUrl = formData.get("imageUrl")
+
+
+    movieService.edit(key,{
+        title,
+        description,
+        imageUrl
+    })
+
+    
+
+}
+
+function movieDeleteHandler(e,key) {
+    e.preventDefault()
+    movieService.delete(key)
+}
+
 onInit()
