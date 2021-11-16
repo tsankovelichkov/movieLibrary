@@ -54,9 +54,9 @@
     <h1 class="text-center">Movies</h1>
         <section>
             <a onclick=navigateHandler(event) href="/add-movie" class="btn btn-warning navi">Add Movie</a>
-            <form class="search float-right">
+            <form name="search-form" class="search float-right" onsubmit="onSubmitSearchHandler(event)">
                 <label>Search: </label>
-                <input type="text">
+                <input name="text" type="text">
                 <input type="submit" class="btn btn-info" value="Search">
             </form>
         </section>
@@ -65,6 +65,7 @@
             <div class="row d-flex d-wrap">
         
                 <div class="card-deck d-flex justify-content-center">
+                    {{#if movies}}
                     {{#each movies}}
                     <div class="card mb-4">
                         <img class="card-img-top" src={{imageUrl}} alt="Card image cap" width="400">
@@ -75,7 +76,10 @@
                             <a class="btn btn-info navi" onclick=navigateHandler(event) href="/details/{{key}}">Details</a>
                         </div>
                     </div>
-                    {{/each}}             
+                    {{/each}} 
+                    {{else}}
+                    <span>No Movies at all</span> 
+                    {{/if}}
                 </div>
             </div>
         </div>

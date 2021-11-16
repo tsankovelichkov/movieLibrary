@@ -30,8 +30,16 @@ const router = async (path) => {
         case `/edit/${key}`:
             let app1 = document.getElementById('app')
             let template1 = Handlebars.compile(document.getElementById(routes['/edit']).innerHTML)
-            app1.innerHTML = template1({key})
-            return    
+            app1.innerHTML = template1({ key })
+            return
+        case `/search/${key}`:
+
+            userData.movies = await movieService.getAll(key)
+
+            let app2 = document.getElementById('app')
+            let template2 = Handlebars.compile(document.getElementById(routes['/home']).innerHTML)
+            app2.innerHTML = template2(userData)
+            return
         default:
             break;
     }

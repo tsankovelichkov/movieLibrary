@@ -24,7 +24,7 @@ function onSubmitLoginHandler(e) {
     let email = formData.get('email')
     let password = formData.get('password')
 
-    authService.login(email, password)
+    authService.login(email, password).then(res=>console.log(res))       
 }
 
 function onSubmitRegisterHandler(e) {
@@ -80,6 +80,15 @@ function onSubmitEditMovieHandler(e,key) {
 function movieDeleteHandler(e,key) {
     e.preventDefault() 
     movieService.delete(key)
+}
+
+function onSubmitSearchHandler(e) {
+    e.preventDefault()
+    let formData = new FormData(document.forms['search-form'])
+    
+    let text = formData.get('text')
+
+    navigate(`/search/${text}`)
 }
 
 onInit()

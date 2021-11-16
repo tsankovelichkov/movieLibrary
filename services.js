@@ -57,16 +57,19 @@ const authService = {
 
 const movieService = {
     async add(data) {
-        let res = await request('https://movielibrary-62811-default-rtdb.firebaseio.com/movies.json', data , "POST")
-        
+        let res = await request('https://movielibrary-62811-default-rtdb.firebaseio.com/movies.json', data, "POST")
+
         await navigate('/home')
     },
 
-    async getAll() {
-        let res = await request('https://movielibrary-62811-default-rtdb.firebaseio.com/movies.json', undefined , "GET")
+    async getAll(title) {
+        let res = await request('https://movielibrary-62811-default-rtdb.firebaseio.com/movies.json', undefined, "GET")
 
-
-       return Object.keys(res).map( key => ({key,...res[key]}))
+        if (!title) {
+            return Object.keys(res).map(key => ({ key, ...res[key] }))
+        } else {
+            return Object.keys(res).map(key => ({ key, ...res[key] })).filter(object => object.title == title)
+        }
     },
 
     async getOne(id) {
@@ -78,16 +81,16 @@ const movieService = {
     },
 
     async edit(id, movieEdit) {
-        let res = await request(`https://movielibrary-62811-default-rtdb.firebaseio.com/movies/${id}.json`, movieEdit , "PUT")
+        let res = await request(`https://movielibrary-62811-default-rtdb.firebaseio.com/movies/${id}.json`, movieEdit, "PUT")
 
         await navigate('/home')
     },
 
     async delete(id) {
-        let res = await request(`https://movielibrary-62811-default-rtdb.firebaseio.com/movies/${id}.json`, undefined , "DELETE")
+        let res = await request(`https://movielibrary-62811-default-rtdb.firebaseio.com/movies/${id}.json`, undefined, "DELETE")
 
         await navigate('/home')
-        
+
     }
 
 
